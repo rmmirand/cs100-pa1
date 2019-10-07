@@ -36,6 +36,7 @@ class BST {
 	    if(!newNode){
 		newNode = new BSTNode<Data>(item);
 		isize++;
+		iheight = heightCheck(newNode, iheight);
 		return true;
 	    }
 	    return false;
@@ -90,6 +91,19 @@ class BST {
 	BSTNode<Data>* tempRoot = root;
 	finalOrder = orderHelper(tempRoot, finalOrder);
 	return finalOrder;
+    }
+    int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
+	int newHeight = 0;
+	while(tallCheck->parent){
+		tallCheck = tallCheck->parent;
+		newHeight++;
+	}
+	if(currHeight < newHeight){
+		return newHeight;
+	}else{
+		return currHeight;
+	}
+
     }
   private:
     /** TODO */
