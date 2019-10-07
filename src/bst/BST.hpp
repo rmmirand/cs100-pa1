@@ -31,19 +31,51 @@ class BST {
     virtual ~BST() { deleteAll(root); }
 
     /** TODO */
-    virtual bool insert(const Data& item) { return false; }
+    virtual bool insert(const Data& item) {
+            BSTNode<Data>* newNode = find(item).getNode();
+	    if(!newNode){
+		newNode = new BSTNode<Data>(item);
+		isize++;
+		return true;
+	    }
+	    return false;
+    }
 
     /** TODO */
-    virtual iterator find(const Data& item) const { return 0; }
+    virtual iterator find(const Data& item) const { 
+    	    BSTNode<Data>* curr = root;
+	    if(!curr){
+		    return curr;
+	    }
+	    else{
+		    while(item != curr->data){
+			    if(!curr){
+				    return curr;
+			    }
+			    else if(item < curr->data){
+		  	          curr = curr->left;
+			    }else{
+			          curr = curr->right;
+			    }
+		    }
+		    return curr;
+	    }
+    }
 
     /** TODO */
-    unsigned int size() const { return 0; }
+    unsigned int size() const { 	    
+	    return isize;
+    }
 
     /** TODO */
-    int height() const { return 0; }
+    int height() const { return iheight; }
 
     /** TODO */
-    bool empty() const { return false; }
+    bool empty() const { 
+	    if(!root){
+		    return true;
+	    }
+	    return false; }
 
     /** TODO */
     iterator begin() const { return BST::iterator(first(root)); }
@@ -53,12 +85,21 @@ class BST {
     iterator end() const { return typename BST<Data>::iterator(0); }
 
     /** TODO */
-    vector<Data> inorder() const {}
-
+    vector<Data> inorder() const {
+    	vector<Data> finalOrder;
+	BSTNode<Data>* tempRoot = root;
+	finalOrder = orderHelper(tempRoot, finalOrder);
+	return finalOrder;
+    }
   private:
     /** TODO */
-    static BSTNode<Data>* first(BSTNode<Data>* root) { return 0; }
-
+    static BSTNode<Data>* first(BSTNode<Data>* root) { 
+	    BSTNode<Data>* findRoot = root;
+	    while(findRoot->parent){
+		    findRoot = findRoot->parent;
+	    }
+	    return findRoot; 
+    }
     /** TODO */
     static void deleteAll(BSTNode<Data>* n) {
         /* Pseudocode:
@@ -67,7 +108,25 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
+	    if(!n){
+		return;
+	    }
+	    deleteAll(n->left);
+	    deleteAll(n->right);
+	    delete n;
     }
+    static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
+	while(nodeOrder->left){
+		orderHelper(nodeOrder->left , vectorOrder);
+	}
+	vectorOrder.push_back(nodeOrder->data);
+	while(nodeOrder->right){
+		orderHelper(nodeOrder->right, vectorOrder);
+	}
+	return vectorOrder;
+    }
+
+
 };
 
 #endif  // BST_HPP

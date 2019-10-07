@@ -14,10 +14,12 @@ class BSTNode {
     Data const data;  // the const Data in this node.
 
     /** TODO */
-    BSTNode(const Data& d) : data(d) {}
+    BSTNode(const Data& d) : data(d), left(0), right(0), parent(0) {
+    }
 
     /** TODO */
-    BSTNode<Data>* successor() { return 0; }
+    BSTNode<Data>* successor() {
+    return 0; }
 };
 
 /** DO NOT CHANGE THIS METHOD

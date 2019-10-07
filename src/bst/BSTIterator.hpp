@@ -24,7 +24,9 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
         curr = curr->successor();
         return *this;
     }
-
+    BSTNode<Data>* getNode(){
+		return this->curr;
+    }
     /** Post-increment operator. */
     BSTIterator<Data> operator++(int) {
         BSTIterator before = BSTIterator(curr);
@@ -33,10 +35,21 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
     }
 
     /** TODO */
-    bool operator==(BSTIterator<Data> const& other) const { return false; }
+    bool operator==(BSTIterator<Data> const& other) const { 
+	    if(this->curr < other.curr || other.curr < this->curr){
+		return false;
+	    }
+	    return true;
+    }
 
     /** TODO */
-    bool operator!=(BSTIterator<Data> const& other) const { return false; }
+    bool operator!=(BSTIterator<Data> const& other) const { 
+	    if(this->curr < other.curr  || other.curr < this->curr){
+		    return true;
+            }
+	    return false; 
+    }
+
 };
 
 #endif  // BSTITERATOR_HPP
