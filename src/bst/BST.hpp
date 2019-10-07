@@ -155,7 +155,13 @@ class BST {
 	    deleteAll(n->right);
 	    delete n;
     }
-    static vector<Data>* orderHelper(BSTNode<Data>* nodeOrder, vector<Data>* vectorOrder ){
+    static void orderHelper(BSTNode<Data>* nodeOrder, vector<Data>* vectorOrder ){
+	    while(nodeOrder){
+		orderHelper(nodeOrder->left, vectorOrder);
+		vectorOrder->push_back(nodeOrder->data);
+		orderHelper(nodeOrder->right, vectorOrder);
+	    }
+	    return;
     }
 
 
