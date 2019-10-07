@@ -32,6 +32,7 @@ class BST {
 
     /** TODO */
     virtual bool insert(const Data& item) {
+
 	    if(!root){
 		root = new BSTNode<Data>(item);
 		isize++;
@@ -43,23 +44,23 @@ class BST {
 
     /** TODO */
     virtual iterator find(const Data& item) const { 
-    	   /* BSTNode<Data>* curr = root;
-	    if(!curr){
-		    return curr;
-	    }
-	    else{
-		    while(item != curr->data){
-			    if(!curr){
-				    return curr;
-			    }
-			    else if(item < curr->data){
-		  	          curr = curr->left;
-			    }else{
-			          curr = curr->right;
-			    }
-		    }
+  //  	    BSTNode<Data>* curr = root;
+//	    if(!curr){
+//		    return curr;
+//	    }
+//	    else{
+//		    while(item != curr->data){
+//			    if(!curr){
+//				    return curr;
+//			    }
+//			    else if(item < curr->data){
+//		  	          curr = curr->left;
+//			    }else{
+//			          curr = curr->right;
+//			    }
+//		    } 
 		    return nullptr;
-	    }*/
+//	    }
     }
 
     /** TODO */
@@ -75,7 +76,8 @@ class BST {
 	    if(!root){
 		    return true;
 	    }
-	    return false; }
+	    return false; 
+    }
 
     /** TODO */
     iterator begin() const { return BST::iterator(first(root)); }
@@ -86,10 +88,10 @@ class BST {
 
     /** TODO */
     vector<Data> inorder() const {
-    /*	vector<Data> finalOrder;
-	BSTNode<Data>* tempRoot = root;
-	finalOrder = orderHelper(tempRoot, finalOrder);
-*/	return finalOrder;
+    	vector<Data> finalOrder;
+//	BSTNode<Data>* tempRoot = root;
+//	finalOrder = orderHelper(tempRoot, finalOrder);
+	return finalOrder;
     }
     int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
 	int newHeight = 0;
@@ -129,7 +131,7 @@ class BST {
 	    delete n;
 	    }
     }
-    static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
+/*    static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
 	while(nodeOrder->left){
 		orderHelper(nodeOrder->left , vectorOrder);
 	}
@@ -139,7 +141,7 @@ class BST {
 	}
 	return vectorOrder;
     }
-
+*/
 
 };
 
