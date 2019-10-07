@@ -152,11 +152,10 @@ class BST {
         */
 	    if(!n){
 		return;
-	    }else{
+	    }
 	    deleteAll(n->left);
 	    deleteAll(n->right);
 	    delete n;
-	    }
     }
     static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
 	while(nodeOrder->left){
