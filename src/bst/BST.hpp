@@ -32,14 +32,15 @@ class BST {
 
     /** TODO */
     virtual bool insert(const Data& item) {
-           // BSTNode<Data>* newNode = find(item).getNode();
-//	    if(!newNode){
+            BSTIterator<Data> isitHere = find(item);
+
+	    if(isitHere == NULL){
 		BSTNode<Data>* newNode = new BSTNode<Data>(item);
 		isize++;
 		iheight = heightCheck(newNode, iheight);
 		return true;
-//	    }
-//	    return false;
+	    }
+	    return false;
     }
 
     /** TODO */
@@ -122,12 +123,13 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
-	    if(n == NULL){
+	    if(!n){
 		return;
-	    }
+	    }else{
 	    deleteAll(n->left);
 	    deleteAll(n->right);
 	    delete n;
+	    }
     }
     static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
 	while(nodeOrder->left){
