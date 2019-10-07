@@ -32,14 +32,12 @@ class BST {
 
     /** TODO */
     virtual bool insert(const Data& item) {
-            BSTIterator<Data> isitHere = find(item);
-
-	    if(isitHere == nullptr){
-		BSTNode<Data>* newNode = new BSTNode<Data>(item);
+	    if(!root){
+		root = new BSTNode<Data>(item);
 		isize++;
-		iheight = heightCheck(newNode, iheight);
-		return true;
+		iheight++;
 	    }
+
 	    return false;
     }
 
