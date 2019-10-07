@@ -32,14 +32,14 @@ class BST {
 
     /** TODO */
     virtual bool insert(const Data& item) {
-            BSTNode<Data>* newNode = find(item).getNode();
-	    if(!newNode){
-		newNode = new BSTNode<Data>(item);
+           // BSTNode<Data>* newNode = find(item).getNode();
+//	    if(!newNode){
+		BSTNode<Data>* newNode = new BSTNode<Data>(item);
 		isize++;
 		iheight = heightCheck(newNode, iheight);
 		return true;
-	    }
-	    return false;
+//	    }
+//	    return false;
     }
 
     /** TODO */
