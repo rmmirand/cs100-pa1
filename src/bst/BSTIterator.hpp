@@ -36,18 +36,12 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
 
     /** TODO */
     bool operator==(BSTIterator<Data> const& other) const { 
-	    if(this->curr < other.curr || other.curr < this->curr){
-		return false;
-	    }
-	    return true;
+	    return curr == other.curr;
     }
 
     /** TODO */
     bool operator!=(BSTIterator<Data> const& other) const { 
-	    if(this->curr < other.curr  || other.curr < this->curr){
-		    return true;
-            }
-	    return false; 
+	    return curr != other.curr; 
     }
 
 };
