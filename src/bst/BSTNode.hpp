@@ -19,7 +19,8 @@ class BSTNode {
 
     /** TODO */
     BSTNode<Data>* successor() {
-    return 0; }
+   	 return this->right;
+    }
 };
 
 /** DO NOT CHANGE THIS METHOD

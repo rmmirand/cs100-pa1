@@ -32,13 +32,40 @@ class BST {
 
     /** TODO */
     virtual bool insert(const Data& item) {
-
 	    if(!root){
 		root = new BSTNode<Data>(item);
 		isize++;
 		iheight++;
 	    }
-	    
+	    BSTNode<Data>* newInsert = root;
+	    while(newInsert){
+		   if(item < newInsert->data){
+			if(newInsert->left){
+				newInsert = newInsert->left;
+			}else{
+				newInsert->left = new BSTNode<Data>(item);
+				newInsert->left->parent = newInsert;
+				newInsert = newInsert->left;
+				isize++;
+				iheight = heightCheck(newInsert, iheight);
+				return true;
+			}
+		   }else if(newInsert->data < item){
+			   if(newInsert->right){
+				newInsert = newInsert->right;
+			   }else{
+				newInsert->right = new BSTNode<Data>(item);
+				newInsert->right->parent = newInsert;
+				newInsert = newInsert->right;
+				isize++;
+				iheight = heightCheck(newInsert, iheight);
+				return true;
+			   }
+		   }else{
+			return false;
+		   }
+	    } 
+            
 	    return false;
     }
 
@@ -89,8 +116,8 @@ class BST {
     /** TODO */
     vector<Data> inorder() const {
     	vector<Data> finalOrder;
-//	BSTNode<Data>* tempRoot = root;
-//	finalOrder = orderHelper(tempRoot, finalOrder);
+	BSTNode<Data>* tempRoot = root;
+	finalOrder = orderHelper(tempRoot, finalOrder);
 	return finalOrder;
     }
     int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
@@ -131,7 +158,7 @@ class BST {
 	    delete n;
 	    }
     }
-/*    static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
+    static vector<Data> orderHelper(BSTNode<Data>* nodeOrder, vector<Data> vectorOrder ){
 	while(nodeOrder->left){
 		orderHelper(nodeOrder->left , vectorOrder);
 	}
@@ -141,7 +168,7 @@ class BST {
 	}
 	return vectorOrder;
     }
-*/
+
 
 };
 
