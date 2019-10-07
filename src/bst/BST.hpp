@@ -71,23 +71,23 @@ class BST {
 
     /** TODO */
     virtual iterator find(const Data& item) const { 
-  //  	    BSTNode<Data>* curr = root;
-//	    if(!curr){
-//		    return curr;
-//	    }
-//	    else{
-//		    while(item != curr->data){
-//			    if(!curr){
-//				    return curr;
-//			    }
-//			    else if(item < curr->data){
-//		  	          curr = curr->left;
-//			    }else{
-//			          curr = curr->right;
-//			    }
-//		    } 
-		    return nullptr;
-//	    }
+    	    BSTNode<Data>* curr = root;
+	    if(!curr){
+		    return curr;
+	    }
+	    else{
+		    while(item != curr->data){
+			    if(!curr){
+				    return curr;
+			    }
+			    else if(item < curr->data){
+		  	          curr = curr->left;
+			    }else{
+			          curr = curr->right;
+			    }
+		    } 
+		    return curr;
+	    }
     }
 
     /** TODO */
