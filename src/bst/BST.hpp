@@ -34,7 +34,7 @@ class BST {
     virtual bool insert(const Data& item) {
             BSTIterator<Data> isitHere = find(item);
 
-	    if(isitHere == NULL){
+	    if(isitHere == nullptr){
 		BSTNode<Data>* newNode = new BSTNode<Data>(item);
 		isize++;
 		iheight = heightCheck(newNode, iheight);
@@ -60,7 +60,7 @@ class BST {
 			          curr = curr->right;
 			    }
 		    }
-		    return curr;
+		    return nullptr;
 	    }
     }
 
