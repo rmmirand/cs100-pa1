@@ -76,7 +76,7 @@ class BST {
 		    return curr;
 	    }
 	    else{
-		    while(item != curr->data){
+		    while(!(item == curr->data)){
 			    if(!curr){
 				    return curr;
 			    }
