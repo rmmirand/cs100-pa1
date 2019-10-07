@@ -131,7 +131,6 @@ class BST {
 	}else{
 		return currHeight;
 	}
-
     }
   private:
     /** TODO */

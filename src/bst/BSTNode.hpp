@@ -19,7 +19,22 @@ class BSTNode {
 
     /** TODO */
     BSTNode<Data>* successor() {
-   	 return this->right;
+	 BSTNode<Data>* nextNode = this;
+	 if(nextNode->right){
+		nextNode = nextNode->right;
+		while(nextNode->left){
+			nextNode = nextNode->left;
+		}
+		return nextNode;
+	 }else{
+		while(nextNode->parent){
+			if(nextNode == nextNode->parent->left){
+				return nextNode->parent;
+			}else{
+				nextNode = nextNode->parent;
+			}
+		}
+	 }
     }
 };
 
