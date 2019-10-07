@@ -37,13 +37,13 @@ class BST {
 		isize++;
 		iheight++;
 	    }
-
+	    
 	    return false;
     }
 
     /** TODO */
     virtual iterator find(const Data& item) const { 
-    	    BSTNode<Data>* curr = root;
+    	   /* BSTNode<Data>* curr = root;
 	    if(!curr){
 		    return curr;
 	    }
@@ -59,7 +59,7 @@ class BST {
 			    }
 		    }
 		    return nullptr;
-	    }
+	    }*/
     }
 
     /** TODO */
@@ -86,10 +86,10 @@ class BST {
 
     /** TODO */
     vector<Data> inorder() const {
-    	vector<Data> finalOrder;
+    /*	vector<Data> finalOrder;
 	BSTNode<Data>* tempRoot = root;
 	finalOrder = orderHelper(tempRoot, finalOrder);
-	return finalOrder;
+*/	return finalOrder;
     }
     int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
 	int newHeight = 0;
