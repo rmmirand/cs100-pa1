@@ -116,7 +116,7 @@ class BST {
     /** TODO */
     vector<Data> inorder() const {
     	vector<Data>* finalOrder;
-	finalOrder = orderHelper(root, finalOrder);
+	orderHelper(root, finalOrder);
 	return *finalOrder;
     }
     int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
