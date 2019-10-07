@@ -108,7 +108,7 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
-	    if(!n){
+	    if(n == NULL){
 		return;
 	    }
 	    deleteAll(n->left);
