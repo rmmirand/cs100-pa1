@@ -57,5 +57,10 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     // assert failed duplicate insertion
     ASSERT_FALSE(bst.insert(3));
 }
+/*TEST_F(SmallBSTFixture, INORDER_TEST){
+    //test inorder function
+    vector<int> input {3,4,1,100,-33};
+    ASSERT_EQ(bst.inorder(), input);
+}*/
 
 // TODO: add more BST tests here
