@@ -65,13 +65,12 @@ class BST {
 			return false;
 		   }
 	    } 
-            
-	    return false;
     }
 
     /** TODO */
     virtual iterator find(const Data& item) const { 
 	    BSTIterator<Data> currIt = begin();
+
 	    return currIt;
     }
 

@@ -29,7 +29,7 @@ class BSTNode {
 		return nextNode;
 	 }else{
 		while(nextNode->parent){
-			if(nextNode == nextNode->parent->left){
+			if(!(nextNode < nextNode->parent->left) && !(nextNode->parent->left < nextNode)){
 				return nextNode->parent;
 			}else{
 				nextNode = nextNode->parent;
