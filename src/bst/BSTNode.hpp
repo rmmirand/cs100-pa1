@@ -14,7 +14,8 @@ class BSTNode {
     Data const data;  // the const Data in this node.
 
     /** TODO */
-    BSTNode(const Data& d) : data(d), left(0), right(0), parent(0) {
+    BSTNode(const Data& d) : data(d) {
+	left=right=parent=0;
     }
 
     /** TODO */
