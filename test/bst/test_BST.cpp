@@ -59,8 +59,16 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
 }
 TEST_F(SmallBSTFixture, INORDER_TEST){
     //test inorder function
-    vector<int> input{-33,1,3,4,100};
+    bst.insert(0);
+    bst.insert(2);
+    bst.insert(50);
+    bst.insert(99);
+    vector<int> input{-33,0,1,2,3,4,50,99,100};
     ASSERT_EQ(bst.inorder(), input);
 }
+TEST_F(SmallBSTFixture, FIND_TEST){ 
+    ASSERT_EQ(bst.find(50).getNode()->data, 3);
+}
+
 
 // TODO: add more BST tests here

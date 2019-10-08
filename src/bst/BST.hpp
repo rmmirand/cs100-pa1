@@ -107,7 +107,7 @@ class BST {
     }
 
     /** TODO */
-    iterator begin() const { return BST::iterator(first(root)); }
+    iterator begin() const { return BST::iterator(root); }
 
     /** Return an iterator pointing past the last item in the BST.
      */
