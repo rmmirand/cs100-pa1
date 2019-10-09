@@ -74,17 +74,17 @@ class BST {
 	    if(!root){
 		return end();
 	    }
-	   /* while(currIt.getNode()->data < item && currIt != end()){
-			currIt++;
-	    }
-	    f(currIt == end()){
+	    
+	//		currIt++;
+	  
+/*	    if(currIt == end()){
 		return currIt;
 	    }else if(item < currIt.getNode()->data){
 		    return end();
 	    }else{
 		    return currIt;
 	    }*/
-	    
+	    return currIt;
     }
 
 
