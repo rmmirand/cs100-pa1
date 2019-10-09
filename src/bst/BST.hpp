@@ -1,3 +1,9 @@
+/** Rosa Miranda
+ * A12107125
+ * CSE100-A00
+ *
+ *Ishikevish, Liz,Niema Moshiri. "3.3 BST Trees" STEPIK Accessed October 2019
+ */
 #ifndef BST_HPP
 #define BST_HPP
 #include <iostream>
@@ -28,84 +34,83 @@ class BST {
     BST() : root(0), isize(0), iheight(-1) {}
 
     /** TODO */
+    /** destructor */
     virtual ~BST() { deleteAll(root); }
 
     /** TODO */
+    /** inserts a new node if item doesn't already exist, updates size and
+     * height */
     virtual bool insert(const Data& item) {
-	    if(!root){
-		root = new BSTNode<Data>(item);
-		isize++;
-		iheight++;
-		return true;
-	    }
-	    BSTNode<Data>* newInsert = root;
-	    while(newInsert){
-		   if(item < newInsert->data){
-			if(newInsert->left){
-				newInsert = newInsert->left;
-			}else{
-				newInsert->left = new BSTNode<Data>(item);
-				newInsert->left->parent = newInsert;
-				newInsert = newInsert->left;
-				isize++;
-				iheight = heightCheck(newInsert, iheight);
-				return true;
-			}
-		   }else if(newInsert->data < item){
-			   if(newInsert->right){
-				newInsert = newInsert->right;
-			   }else{
-				newInsert->right = new BSTNode<Data>(item);
-				newInsert->right->parent = newInsert;
-				newInsert = newInsert->right;
-				isize++;
-				iheight = heightCheck(newInsert, iheight);
-				return true;
-			   }
-		   }else{
-			return false;
-		   }
-	    } 
+        if (!root) {
+            root = new BSTNode<Data>(item);
+            isize++;
+            iheight++;
+            return true;
+        }
+        BSTNode<Data>* newInsert = root;
+        while (newInsert) {
+            if (item < newInsert->data) {
+                if (newInsert->left) {
+                    newInsert = newInsert->left;
+                } else {
+                    newInsert->left = new BSTNode<Data>(item);
+                    newInsert->left->parent = newInsert;
+                    newInsert = newInsert->left;
+                    isize++;
+                    iheight = heightCheck(newInsert, iheight);
+                    return true;
+                }
+            } else if (newInsert->data < item) {
+                if (newInsert->right) {
+                    newInsert = newInsert->right;
+                } else {
+                    newInsert->right = new BSTNode<Data>(item);
+                    newInsert->right->parent = newInsert;
+                    newInsert = newInsert->right;
+                    isize++;
+                    iheight = heightCheck(newInsert, iheight);
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
     }
 
     /** TODO */
-    virtual iterator find(const Data& item) const { 
-	    BSTIterator<Data> currIt = begin();
-	    if(!root){
-		return end();
-	    }
-	    while(currIt != end() && currIt.getNode()->data < item){
-		    currIt++;
-	    }
-	    if(currIt == end()){
-		return currIt;
-	    }else if(item < currIt.getNode()->data){
-		return end();
-	    }else{
-		 return currIt;
-	    }
-	    
+    /** looks for item in a bst, returns iterator */
+    virtual iterator find(const Data& item) const {
+        BSTIterator<Data> currIt = begin();
+        if (!root) {
+            return end();
+        }
+        while (currIt != end() && currIt.getNode()->data < item) {
+            currIt++;
+        }
+        if (currIt == end()) {
+            return currIt;
+        } else if (item < currIt.getNode()->data) {
+            return end();
+        } else {
+            return currIt;
+        }
     }
-
-
     /** TODO */
-    unsigned int size() const { 	    
-	    return isize;
-    }
+    unsigned int size() const { return isize; }
 
     /** TODO */
     int height() const { return iheight; }
 
     /** TODO */
-    bool empty() const { 
-	    if(!root){
-		    return true;
-	    }
-	    return false; 
+    bool empty() const {
+        if (!root) {
+            return true;
+        }
+        return false;
     }
 
     /** TODO */
-    iterator begin() const { return BST::iterator(first(root));}
+    iterator begin() const { return BST::iterator(first(root)); }
 
     /** Return an iterator pointing past the last item in the BST.
      */
@@ -113,36 +118,38 @@ class BST {
 
     /** TODO */
     vector<Data> inorder() const {
-	vector<Data> finalOrder;
-     	    if(!root){
-		return finalOrder;	
-	    }
-	orderHelper(root, &finalOrder);
-	return finalOrder;
+        vector<Data> finalOrder;
+        if (!root) {
+            return finalOrder;
+        }
+        orderHelper(root, &finalOrder);
+        return finalOrder;
     }
-    int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
-	int newHeight = 0;
-	while(tallCheck->parent){
-		tallCheck = tallCheck->parent;
-		newHeight++;
-	}
-	if(currHeight < newHeight){
-		return newHeight;
-	}else{
-		return currHeight;
-	}
+    /*  checks the the height of the current node against the bst height*/
+    int heightCheck(BSTNode<Data>* tallCheck, int currHeight) const {
+        int newHeight = 0;
+        while (tallCheck->parent) {
+            tallCheck = tallCheck->parent;
+            newHeight++;
+        }
+        if (currHeight < newHeight) {
+            return newHeight;
+        } else {
+            return currHeight;
+        }
     }
+
   private:
     /** TODO */
     static BSTNode<Data>* first(BSTNode<Data>* root) {
-	    BSTNode<Data>* beginning = root;
-	    if(!root){
-		return nullptr;
-	    }
-	    while(beginning->left){
-	    	beginning= beginning->left;
-	    }
-	    return beginning;
+        BSTNode<Data>* beginning = root;
+        if (!root) {
+            return nullptr;
+        }
+        while (beginning->left) {
+            beginning = beginning->left;
+        }
+        return beginning;
     }
     /** TODO */
     static void deleteAll(BSTNode<Data>* n) {
@@ -152,23 +159,24 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
-	    if(!n){
-		return;
-	    }
-	    deleteAll(n->left);
-	    deleteAll(n->right);
-	    delete n; 
+        if (!n) {
+            return;
+        }
+        deleteAll(n->left);
+        deleteAll(n->right);
+        delete n;
     }
-    static void orderHelper(BSTNode<Data>* nodeOrder, vector<Data>* vectorOrder ){
-	    while(nodeOrder){
-		orderHelper(nodeOrder->left, vectorOrder);
-		vectorOrder->push_back(nodeOrder->data);
-		orderHelper(nodeOrder->right, vectorOrder);
-		return;
-	    }
+    /**Helper method for inorder, recursively moves through bst and returns a
+     * sorted vector*/
+    static void orderHelper(BSTNode<Data>* nodeOrder,
+                            vector<Data>* vectorOrder) {
+        while (nodeOrder) {
+            orderHelper(nodeOrder->left, vectorOrder);
+            vectorOrder->push_back(nodeOrder->data);
+            orderHelper(nodeOrder->right, vectorOrder);
+            return;
+        }
     }
-
-
 };
 
 #endif  // BST_HPP

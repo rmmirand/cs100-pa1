@@ -57,18 +57,18 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     // assert failed duplicate insertion
     ASSERT_FALSE(bst.insert(3));
 }
-TEST_F(SmallBSTFixture, INORDER_TEST){
-    //test inorder function
-    vector<int> input{-33,1,3,4,100};
+TEST_F(SmallBSTFixture, INORDER_TEST) {
+    // test inorder function
+    vector<int> input{-33, 1, 3, 4, 100};
     ASSERT_EQ(bst.inorder(), input);
 }
 /*TEST_F(SmallBSTFixture, BEGIN_TEST){
-	BSTNode<int> node(-33);
-	BSTIterator<int> iter(bst.begin());
-	ASSERT_EQ(iter, node);
+        BSTNode<int> node(-33);
+        BSTIterator<int> iter(bst.begin());
+        ASSERT_EQ(iter, node);
 }*/
-TEST_F(SmallBSTFixture, FIND_TEST){ 
-      ASSERT_EQ(bst.find(1).getNode()->data, 1 ); 
+TEST_F(SmallBSTFixture, FIND_TEST) {
+    ASSERT_EQ(bst.find(1).getNode()->data, 1);
 }
 
 // TODO: add more BST tests here

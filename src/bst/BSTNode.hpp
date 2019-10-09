@@ -1,8 +1,14 @@
-#ifndef BSTNODE_HPP
+#/** Rosa Miranda
+ * A12107125
+ * CSE100-A00
+ *
+ *Ishikevish, Liz,Niema Moshiri. "3.3 BST Trees" STEPIK Accessed October 2019
+ */
+ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iomanip>
 #include <iostream>
-using namespace std;
+    using namespace std;
 
 template <typename Data>
 
@@ -14,33 +20,32 @@ class BSTNode {
     Data const data;  // the const Data in this node.
 
     /** TODO */
-    BSTNode(const Data& d) : data(d) {
-	left=right=parent=0;
-    }
+    BSTNode(const Data& d) : data(d) { left = right = parent = 0; }
 
     /** TODO */
+    /** returns the next smallest node, greater than the current one */
     BSTNode<Data>* successor() {
-	 BSTNode<Data>* nextNode = this;
-	 if(!this){
-		return nullptr;
-	 }
-	 if(nextNode->right){
-		nextNode = nextNode->right;
-		while(nextNode->left){
-			nextNode = nextNode->left;
-		}
-		return nextNode;
-	 }else{
-		while(nextNode->parent){
-			if(!(nextNode < nextNode->parent->left) && !(nextNode->parent->left < nextNode)){
-				return nextNode->parent;
-			}else{
-				nextNode = nextNode->parent;
-				
-			}
-		}
-		return nullptr;
-	 }
+        BSTNode<Data>* nextNode = this;
+        if (!this) {
+            return nullptr;
+        }
+        if (nextNode->right) {
+            nextNode = nextNode->right;
+            while (nextNode->left) {
+                nextNode = nextNode->left;
+            }
+            return nextNode;
+        } else {
+            while (nextNode->parent) {
+                if (!(nextNode < nextNode->parent->left) &&
+                    !(nextNode->parent->left < nextNode)) {
+                    return nextNode->parent;
+                } else {
+                    nextNode = nextNode->parent;
+                }
+            }
+            return nullptr;
+        }
     }
 };
 
