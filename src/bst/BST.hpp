@@ -71,7 +71,7 @@ class BST {
     /** TODO */
     virtual iterator find(const Data& item) const { 
 	    BSTIterator<Data> currIt = begin();
-	    if(empty()){
+/*	    if(empty()){
 		return end();
 	    }
 	    while(currIt.getNode()->data < item){
@@ -81,7 +81,8 @@ class BST {
 		return end();
 	    }else{
 		return currIt;
-	    }
+	    }*/
+	    return end();
     }
 
 
