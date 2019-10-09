@@ -68,7 +68,7 @@ TEST_F(SmallBSTFixture, INORDER_TEST){
 	ASSERT_EQ(iter, node);
 }*/
 TEST_F(SmallBSTFixture, FIND_TEST){ 
-      ASSERT_EQ(bst.find(50).getNode()->data, 50); 
+      ASSERT_EQ(bst.find(50).getNode(), nullptr ); 
 }
 
 // TODO: add more BST tests here
