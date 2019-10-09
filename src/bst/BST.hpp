@@ -71,7 +71,7 @@ class BST {
     /** TODO */
     virtual iterator find(const Data& item) const { 
 	    BSTIterator<Data> currIt = begin();
-/*	    if(empty()){
+	 /*   if(empty()){
 		return end();
 	    }
 	    while(currIt.getNode()->data < item){
@@ -81,8 +81,8 @@ class BST {
 		return end();
 	    }else{
 		return currIt;
-	    }*/
-	    return currIt;
+	    }
+	    return currIt;*/
     }
 
 
@@ -133,10 +133,14 @@ class BST {
   private:
     /** TODO */
     static BSTNode<Data>* first(BSTNode<Data>* root) {
+	    BSTNode<Data>* beginning = root;
 	    if(!root){
 		return nullptr;
 	    }
-	    return root;
+	    while(beginning->left){
+	    	beginning= beginning->left;
+	    }
+	    return beginning;
     }
     /** TODO */
     static void deleteAll(BSTNode<Data>* n) {
