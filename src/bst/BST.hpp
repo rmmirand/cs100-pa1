@@ -114,7 +114,7 @@ class BST {
      	    if(!root){
 		return finalOrder;	
 	    }
-	orderHelper(root, finalOrder);
+	orderHelper(root, &finalOrder);
 	return finalOrder;
     }
     int heightCheck(BSTNode<Data>* tallCheck, int currHeight)const{
@@ -153,10 +153,10 @@ class BST {
 	    deleteAll(n->right);
 	    delete n; 
     }
-    static void orderHelper(BSTNode<Data>* nodeOrder, vector<Data> &vectorOrder ){
+    static void orderHelper(BSTNode<Data>* nodeOrder, vector<Data>* vectorOrder ){
 	    while(nodeOrder){
 		orderHelper(nodeOrder->left, vectorOrder);
-		vectorOrder.push_back(nodeOrder->data);
+		vectorOrder->push_back(nodeOrder->data);
 		orderHelper(nodeOrder->right, vectorOrder);
 		return;
 	    }
