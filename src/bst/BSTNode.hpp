@@ -4,7 +4,7 @@
  *
  *Ishikevish, Liz,Niema Moshiri. "3.3 BST Trees" STEPIK Accessed October 2019
  */
-ifndef BSTNODE_HPP
+#ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iomanip>
 #include <iostream>
