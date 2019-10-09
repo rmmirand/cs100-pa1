@@ -84,7 +84,7 @@ class BST {
 	    }else{
 		    return currIt;
 	    }*/
-	    return currIt;
+	    return end();
     }
 
 
