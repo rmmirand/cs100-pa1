@@ -33,8 +33,10 @@ class BSTNode {
 				return nextNode->parent;
 			}else{
 				nextNode = nextNode->parent;
+				
 			}
 		}
+		return nullptr;
 	 }
     }
 };
