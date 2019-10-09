@@ -70,8 +70,14 @@ class BST {
     /** TODO */
     virtual iterator find(const Data& item) const { 
 	    BSTIterator<Data> currIt = begin();
-
-	    return currIt;
+	    while(currIt.getNode()->data < item){
+		currIt++;
+	    }
+	    if(item < currIt.getNode()->data){
+		return end();
+	    }else{
+		return currIt;
+	    }
     }
 
 
@@ -141,7 +147,7 @@ class BST {
 	    }
 	    deleteAll(n->left);
 	    deleteAll(n->right);
-	    delete n;
+	    delete n; 
     }
     static void orderHelper(BSTNode<Data>* nodeOrder, vector<Data> &vectorOrder ){
 	    while(nodeOrder){
