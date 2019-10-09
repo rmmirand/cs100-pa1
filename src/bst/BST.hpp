@@ -82,7 +82,7 @@ class BST {
 	    }else{
 		return currIt;
 	    }*/
-	    return end();
+	    return currIt;
     }
 
 
@@ -103,12 +103,7 @@ class BST {
     }
 
     /** TODO */
-    iterator begin() const { 
-	    if(!root){
-		return nullptr;
-	    }
-	    return BST::iterator(root);
-    }
+    iterator begin() const { return BST::iterator(first(root));}
 
     /** Return an iterator pointing past the last item in the BST.
      */
@@ -137,12 +132,11 @@ class BST {
     }
   private:
     /** TODO */
-    static BSTNode<Data>* first(BSTNode<Data>* root) { 
-	    BSTNode<Data>* findRoot = root;
-	    while(findRoot->parent){
-		    findRoot = findRoot->parent;
+    static BSTNode<Data>* first(BSTNode<Data>* root) {
+	    if(!root){
+		return nullptr;
 	    }
-	    return findRoot; 
+	    return root;
     }
     /** TODO */
     static void deleteAll(BSTNode<Data>* n) {
