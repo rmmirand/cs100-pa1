@@ -36,6 +36,7 @@ class BST {
 		root = new BSTNode<Data>(item);
 		isize++;
 		iheight++;
+		return true;
 	    }
 	    BSTNode<Data>* newInsert = root;
 	    while(newInsert){
@@ -70,6 +71,9 @@ class BST {
     /** TODO */
     virtual iterator find(const Data& item) const { 
 	    BSTIterator<Data> currIt = begin();
+	    if(empty()){
+		return nullptr;
+	    }
 	    while(currIt.getNode()->data < item){
 		currIt++;
 	    }
