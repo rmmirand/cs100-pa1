@@ -103,7 +103,12 @@ class BST {
     }
 
     /** TODO */
-    iterator begin() const { return BST::iterator(root); }
+    iterator begin() const { 
+	    if(!root){
+		return nullptr;
+	    }
+	    return BST::iterator(root);
+    }
 
     /** Return an iterator pointing past the last item in the BST.
      */
