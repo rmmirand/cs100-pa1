@@ -69,7 +69,7 @@ class KDT {
 	iheight++;
 	isize = veclength;
 	root->left = buildSubtree(points,0, mid, numDim+1, iheight);
-	root->right = buildSubtree(points,mid+1, veclength-1,numDim+1, iheight);
+	root->right = buildSubtree(points,mid+1, veclength,numDim+1, iheight);
     }
     KDNode* getRoot() {
 	return root;
@@ -118,8 +118,14 @@ class KDT {
                            unsigned int curDim) {}
 
     /** TODO */
-    static void deleteAll(KDNode* n) {}
-
+    static void deleteAll(KDNode* n) {
+        if (!n) {
+            return;
+        }
+        deleteAll(n->left);
+        deleteAll(n->right);
+        delete n;
+    } 
     // Add your own helper methods here
 };
 #endif  // KDT_HPP
