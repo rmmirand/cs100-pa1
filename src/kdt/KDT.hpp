@@ -105,7 +105,7 @@ class KDT {
 	    KDNode* node = new KDNode(points[median+start]);
 	    iheight++;
 	    node->left = buildSubtree(points,start, median,nextDim, iheight);
-	    node->right = buildSubtree(points, median+1, end, nextDim, iheight);
+	    node->right = buildSubtree(points, median+1, end+1, nextDim, iheight);
         return node;
     }
 
