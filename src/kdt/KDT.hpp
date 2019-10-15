@@ -95,7 +95,7 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-	    if(start <= end){
+	    if(end == start){
 		    return nullptr;
 	    }	    
 	    int median = (end-start)/ 2;
