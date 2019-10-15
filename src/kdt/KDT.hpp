@@ -56,8 +56,27 @@ class KDT {
     virtual ~KDT() { deleteAll(root); }
 
     /** TODO */
-    void build(vector<Point>& points) {}
-
+    void build(vector<Point>& points) {
+	if(points.empty()){
+		return;
+	}
+	int veclength = points.size();
+	int mid = veclength/2;
+	numDim = points[0].features.size();
+	CompareValueAt compare(0);
+	sort(points.begin(), points.end(), compare);
+	root = new KDNode(points[mid]);
+	iheight++;
+	isize = veclength;
+	root->left = buildSubtree(points,0, mid, numDim+1, iheight);
+	root->right = buildSubtree(points,mid+1, veclength-1,numDim+1, iheight);
+    }
+    KDNode* getRoot() {
+	return root;
+    }
+    int getnumDim() {
+	    return numDim;
+    }
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { return nullptr; }
 
@@ -67,16 +86,27 @@ class KDT {
     }
 
     /** TODO */
-    unsigned int size() const { return 0; }
+    unsigned int size() const { return isize; }
 
     /** TODO */
-    int height() const { return 0; }
-
+    int height() const { return iheight; }
+    
   private:
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        return nullptr;
+	    if(start <= end){
+		    return nullptr;
+	    }	    
+	    int median = (end-start)/ 2;
+	    int nextDim = (curDim+1) % numDim;
+	    CompareValueAt compare(curDim);
+	    sort(points.begin()+start, points.begin()+end-1,compare);
+	    KDNode* node = new KDNode(points[median+start]);
+	    iheight++;
+	    node->left = buildSubtree(points,start, median,nextDim, iheight);
+	    node->right = buildSubtree(points, median+1, end, nextDim, iheight);
+        return node;
     }
 
     /** TODO */
