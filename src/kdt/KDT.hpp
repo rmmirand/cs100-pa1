@@ -121,7 +121,7 @@ class KDT {
 		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
 	 }
 	 node->point.setDistToQuery(queryPoint);
-	 if(node->point.distToQuery < threshold){
+	 if(node->point.distToQuery <= threshold){
 		 nearestNeighbor = node->point;
 		 threshold = node->point.distToQuery;
 	 }
