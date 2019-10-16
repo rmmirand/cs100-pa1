@@ -75,6 +75,8 @@ class KDT {
 	    if(isize == 0){
 		   return nullptr;
 	    } 
+	    
+            threshold = (numeric_limits<double>::max()),
             findNNHelper(root, queryPoint, 0);
 	    return &nearestNeighbor; 
     }
@@ -117,6 +119,7 @@ class KDT {
 	 }
 	 if(queryPoint.features[curDim] <= node->point.valueAt(curDim)){
 		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
+	
 	 }else{
 		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
 	 }
