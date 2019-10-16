@@ -119,9 +119,15 @@ class KDT {
 	 }
 	 if(queryPoint.features[curDim] <= node->point.valueAt(curDim)){
 		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
+		if(queryPoint.features[curDim] >= node->point.valueAt(curDim)){
+			findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
+		}
 	
 	 }else{
 		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
+		if(queryPoint.features[curDim] >= node->point.valueAt(curDim)){
+			findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
+		}
 	 }
 	 node->point.setDistToQuery(queryPoint);
 	 if(node->point.distToQuery <= threshold){
