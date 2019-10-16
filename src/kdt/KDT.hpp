@@ -114,12 +114,12 @@ class KDT {
 
     /** TODO */
     static void deleteAll(KDNode* n) {
-  /**      if (!n) {
+        if (!n) {
             return;
         }
         deleteAll(n->left);
         deleteAll(n->right);
-        delete n;*/
+        delete n;
     } 
     // Add your own helper methods here
 };
