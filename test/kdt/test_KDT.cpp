@@ -39,15 +39,15 @@ TEST_F(SmallKDTFixture, TEST_SIZE) {
     // Assert that the kd tree has the correct size
     ASSERT_EQ(kdt.size(), 5);
 }
-//TEST_F(SmallKDTFixture, TEST_HEIGHT) {
-//	ASSERT_EQ(kdt.height(), 0);
-//}
+TEST_F(SmallKDTFixture, TEST_HEIGHT) {
+	ASSERT_EQ(kdt.height(), 2);
+}
 TEST_F(SmallKDTFixture, TEST_DIM) {
 	ASSERT_EQ(kdt.getnumDim(), 2);
-}/*
-TEST_F(SmallKDTFixture, TEST_BUILD) {
-	ASSERT_EQ(kdt.getRoot()->left->point.features[0], 1.0);
 }
+TEST_F(SmallKDTFixture, TEST_ROOT) {
+	ASSERT_EQ(kdt.getRoot()->point.features[0], 3.2);
+}/**
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);

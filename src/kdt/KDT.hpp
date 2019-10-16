@@ -50,7 +50,7 @@ class KDT {
           numDim(0),
           threshold(numeric_limits<double>::max()),
           isize(0),
-          iheight(-1) {}
+          iheight(-1)	{}
 
     /** Destructor of KD tree */
     virtual ~KDT() { deleteAll(root); }
@@ -61,13 +61,14 @@ class KDT {
 		return;
 	   }
 	   isize = points.size();
-	   numDim = points[0].features.size();
-    }
-    KDNode* getRoot(){
-	return root;
+	   numDim = points[0].numDim;
+	   root = buildSubtree(points, 0, isize, 0, iheight);
     }
     int getnumDim() {
 	    return numDim;
+    }
+    KDNode* getRoot(){
+	return root;
     }
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { return nullptr; }
@@ -87,7 +88,20 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        return nullptr;
+	if(start==end){
+		return nullptr;
+	}
+        CompareValueAt compare(curDim);
+	sort(points.begin()+start, points.begin()+end, compare);
+	int median =floor((start+end)/2);
+	KDNode* node = new KDNode(points[median]);
+	height++;
+	if(height > iheight){
+		iheight = height;
+	}
+	node->left = buildSubtree(points, start, median, ((curDim+1)%numDim), height);
+        node->right = buildSubtree(points, median+1, end, ((curDim+1)%numDim), height);
+        return node;
     }
 
     /** TODO */
@@ -100,12 +114,12 @@ class KDT {
 
     /** TODO */
     static void deleteAll(KDNode* n) {
-        if (!n) {
+  /**      if (!n) {
             return;
         }
         deleteAll(n->left);
         deleteAll(n->right);
-        delete n;
+        delete n;*/
     } 
     // Add your own helper methods here
 };
