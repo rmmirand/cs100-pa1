@@ -58,7 +58,7 @@ class KDT {
     /** TODO */
     void build(vector<Point>& points) {
     }
-    KDNode* getRoot() {
+    KDNode* getRoot(){
 	return root;
     }
     int getnumDim() {
@@ -82,22 +82,7 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-<<<<<<< HEAD
         return nullptr;
-=======
-	    if(end == start){
-		    return nullptr;
-	    }	    
-	    int median = (end-start)/ 2;
-	    int nextDim = (curDim+1) % numDim;
-	    CompareValueAt compare(curDim);
-	    sort(points.begin()+start, points.begin()+end-1,compare);
-	    KDNode* node = new KDNode(points[median+start]);
-	    iheight++;
-	    node->left = buildSubtree(points,start, median,nextDim, iheight);
-	    node->right = buildSubtree(points, median+1, end, nextDim, iheight);
-        return node;
->>>>>>> 3fc4732ebbe8bae62278103e9b87e9809b0ff801
     }
 
     /** TODO */
