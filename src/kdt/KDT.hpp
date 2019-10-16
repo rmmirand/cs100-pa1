@@ -57,6 +57,11 @@ class KDT {
 
     /** TODO */
     void build(vector<Point>& points) {
+	   if(points.empty()){
+		return;
+	   }
+	   isize = points.size();
+	   numDim = points[0].features.size();
     }
     KDNode* getRoot(){
 	return root;
