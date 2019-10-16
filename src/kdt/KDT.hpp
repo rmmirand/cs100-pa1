@@ -71,7 +71,13 @@ class KDT {
 	return root;
     }
     /** TODO */
-    Point* findNearestNeighbor(Point& queryPoint) { return nullptr; }
+    Point* findNearestNeighbor(Point& queryPoint) { 
+	    if(isize == 0){
+		   return nullptr;
+	    } 
+            findNNHelper(root, queryPoint, 0);
+	    return &nearestNeighbor; 
+    }
 
     /** Extra credit */
     vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
@@ -105,7 +111,21 @@ class KDT {
     }
 
     /** TODO */
-    void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {}
+    void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
+	 if(!node){
+		 return;
+	 }
+	 if(queryPoint.features[curDim] <= node->point.valueAt(curDim)){
+		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
+	 }else{
+		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
+	 }
+	 node->point.setDistToQuery(queryPoint);
+	 if(node->point.distToQuery < threshold){
+		 nearestNeighbor = node->point;
+		 threshold = node->point.distToQuery;
+	 }
+    }
 
     /** Extra credit */
     void rangeSearchHelper(KDNode* node, vector<pair<double, double>>& curBB,

@@ -51,11 +51,10 @@ TEST_F(SmallKDTFixture, TEST_ROOT) {
 TEST_F(SmallKDTFixture, TEST_LEFTROOT){
 	ASSERT_EQ(kdt.getRoot()->left->point.features[0],1.0);
 }
-/**
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     NaiveSearch naiveSearch;
     naiveSearch.build(vec);
     Point queryPoint({5.81, 3.21});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
-}*/
+}
