@@ -71,7 +71,7 @@ TEST_F(SmallKDTFixture, TEST_ROOT) {
 	ASSERT_EQ(kdt.getRoot()->point.features[0], 3.2);
 }
 TEST_F(SmallKDTFixture, TEST_LEFTROOT){
-	ASSERT_EQ(kdt.getRoot()->left->point.features[0],1.0);
+	ASSERT_EQ(kdt.getRoot()->left->point.features[0],1.5);
 }
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     NaiveSearch naiveSearch;
