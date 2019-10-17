@@ -1,6 +1,9 @@
+/** Rosa Miranda
+ *  KNNHelper pseudocode from CSE Discussion Week 2
+ * */
 #ifndef KDT_HPP
 #define KDT_HPP
-
+#define MAGIC_NUMBER 2
 #include <math.h>     // pow, abs
 #include <algorithm>  // sort, max, min
 #include <limits>     // numeric_limits<type>::max()
@@ -77,7 +80,7 @@ class KDT {
 	    } 
 	    
             threshold = numeric_limits<double>::max();
-            findNNHelper(root, queryPoint, 0);
+            findNNHelper(root, queryPoint, 1);
 	    return &nearestNeighbor; 
     }
 
@@ -101,7 +104,7 @@ class KDT {
 	}
         CompareValueAt compare(curDim);
 	sort(points.begin()+start, points.begin()+end-1, compare);
-	int median =floor((start+end)/2);
+	int median =floor((start+end)/MAGIC_NUMBER);
 	KDNode* node = new KDNode(points[median]);
 	height++;
 	if(height > iheight){
@@ -117,9 +120,10 @@ class KDT {
 	 if(!node){
 		 return;
 	 }
-	 
+	 //Initiates recursion
 	 if(queryPoint.valueAt(curDim) >= node->point.valueAt(curDim)){
 		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
+		//Decides whether to check left subtree
 		if(node->left){
 			node->left->point.setDistToQuery(queryPoint);
 			if(node->left->point.distToQuery < threshold){
@@ -129,6 +133,7 @@ class KDT {
 	
 	 }else{
 		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
+		//decides whether to check right subtree
 		if(node->right){
 			node->right->point.setDistToQuery(queryPoint);
 			if(node->right->point.distToQuery < threshold){
@@ -149,6 +154,7 @@ class KDT {
                            unsigned int curDim) {}
 
     /** TODO */
+    //Recursively deletes nodes in KDT 
     static void deleteAll(KDNode* n) {
         if (!n) {
             return;
