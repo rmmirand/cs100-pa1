@@ -123,7 +123,7 @@ class KDT {
 		if(node->left){
 			node->left->point.setDistToQuery(queryPoint);
 			if(node->left->point.distToQuery < threshold){
-				findNNHelper(node->left, queryPoint, ((curDim)%numDim));
+				findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
 			}
 		}
 	
@@ -132,12 +132,12 @@ class KDT {
 		if(node->right){
 			node->right->point.setDistToQuery(queryPoint);
 			if(node->right->point.distToQuery < threshold){
-				findNNHelper(node->right, queryPoint, ((curDim)%numDim));
+				findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
 			}
 		}
 	 }
 	 node->point.setDistToQuery(queryPoint);
-	 if(node->point.distToQuery < threshold){
+	 if(node->point.distToQuery <= threshold){
 		 nearestNeighbor = node->point;
 		 threshold = node->point.distToQuery;
 	 }
