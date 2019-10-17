@@ -66,14 +66,14 @@ TEST_F(SmallBSTFixture, INORDER_TEST) {
     vector<int> input{-33, 1, 2, 3, 4, 56, 100};
     ASSERT_EQ(bst.inorder(), input);
 }
-TEST_F(SmallBSTFixture, FIND_TESTTWO){
+TEST_F(SmallBSTFixture, FIND_TESTTWO) {
     ASSERT_EQ(bst.find(100).getNode()->data, 100);
 }
 TEST_F(SmallBSTFixture, FIND_TEST) {
     ASSERT_EQ(bst.find(1).getNode()->data, 1);
-}TEST_F(SmallBSTFixture, FIND_SUCCESSOR){
-    
-    ASSERT_EQ(bst.find(4).getNode()->successor()->data, 56); 
+}
+TEST_F(SmallBSTFixture, FIND_SUCCESSOR) {
+    ASSERT_EQ(bst.find(4).getNode()->successor()->data, 56);
 }
 
 // TODO: add more BST tests here

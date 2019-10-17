@@ -3,12 +3,14 @@
  * CSE100-A00
  *
  *Ishikevish, Liz,Niema Moshiri. "3.3 BST Trees" STEPIK Accessed October 2019
+ * Functions and variables that make up the nodes that make up the BST
+ * structure. Also contains successor method.
  */
 #ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iomanip>
 #include <iostream>
-    using namespace std;
+using namespace std;
 
 template <typename Data>
 
@@ -20,6 +22,7 @@ class BSTNode {
     Data const data;  // the const Data in this node.
 
     /** TODO */
+    //initialize node
     BSTNode(const Data& d) : data(d) { left = right = parent = 0; }
 
     /** TODO */

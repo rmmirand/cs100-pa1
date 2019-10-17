@@ -1,8 +1,11 @@
 /** Rosa Miranda
  * A12107125
  * CSE100-A00
- *
+ * 
  *Ishikevish, Liz,Niema Moshiri. "3.3 BST Trees" STEPIK Accessed October 2019
+ * This file holds the necessary information to build a bst, insert into the tree,
+ * find a node on the tree, delete the tree, move through the tree in order
+ * and all of its variables.
  */
 #ifndef BST_HPP
 #define BST_HPP
@@ -47,6 +50,7 @@ class BST {
             iheight++;
             return true;
         }
+	//The following code decides the position of the new node
         BSTNode<Data>* newInsert = root;
         while (newInsert) {
             if (item < newInsert->data) {
@@ -75,6 +79,7 @@ class BST {
                 return false;
             }
         }
+	return false;
     }
 
     /** TODO */
@@ -96,12 +101,15 @@ class BST {
         }
     }
     /** TODO */
+    //returns size
     unsigned int size() const { return isize; }
 
     /** TODO */
+    //returns height
     int height() const { return iheight; }
 
     /** TODO */
+    //returns true if bst is empty
     bool empty() const {
         if (!root) {
             return true;
@@ -110,6 +118,7 @@ class BST {
     }
 
     /** TODO */
+    //returns an iterator pointing to the first item of the BST
     iterator begin() const { return BST::iterator(first(root)); }
 
     /** Return an iterator pointing past the last item in the BST.
@@ -117,6 +126,7 @@ class BST {
     iterator end() const { return typename BST<Data>::iterator(0); }
 
     /** TODO */
+    //returns a sorted vector of the BST nodes
     vector<Data> inorder() const {
         vector<Data> finalOrder;
         if (!root) {
@@ -141,6 +151,7 @@ class BST {
 
   private:
     /** TODO */
+    //returns the smallest node in the BST
     static BSTNode<Data>* first(BSTNode<Data>* root) {
         BSTNode<Data>* beginning = root;
         if (!root) {
@@ -152,6 +163,7 @@ class BST {
         return beginning;
     }
     /** TODO */
+    //recursively deletes all the nodes
     static void deleteAll(BSTNode<Data>* n) {
         /* Pseudocode:
            if current node is null: return;

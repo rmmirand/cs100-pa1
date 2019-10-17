@@ -1,5 +1,8 @@
 /** Rosa Miranda
  *  KNNHelper pseudocode from CSE Discussion Week 2
+ *  KDT file provides the structure for building a kdt,
+ *  a function for finding the nearest neighbor of a query point
+ *  their helper functions and variables.
  * */
 #ifndef KDT_HPP
 #define KDT_HPP
@@ -53,35 +56,33 @@ class KDT {
           numDim(0),
           threshold(numeric_limits<double>::max()),
           isize(0),
-          iheight(-1)	{}
+          iheight(-1) {}
 
     /** Destructor of KD tree */
     virtual ~KDT() { deleteAll(root); }
 
     /** TODO */
+    //build method to create the bst with a given vector
     void build(vector<Point>& points) {
-	   if(points.empty()){
-		return;
-	   }
-	   isize = points.size();
-	   numDim = points[0].numDim;
-	   root = buildSubtree(points, 0, isize, 0, iheight);
+        if (points.empty()) {
+            return;
+        }
+        isize = points.size();
+        numDim = points[0].numDim;
+        root = buildSubtree(points, 0, isize, 0, iheight);
     }
-    int getnumDim() {
-	    return numDim;
-    }
-    KDNode* getRoot(){
-	return root;
-    }
+    int getnumDim() { return numDim; }
+    KDNode* getRoot() { return root; }
     /** TODO */
-    Point* findNearestNeighbor(Point& queryPoint) { 
-	    if(isize == 0){
-		   return nullptr;
-	    } 
-	    
-            threshold = numeric_limits<double>::max();
-            findNNHelper(root, queryPoint, 1);
-	    return &nearestNeighbor; 
+    //function to find point on kdt with least distance to query point
+    Point* findNearestNeighbor(Point& queryPoint) {
+        if (isize == 0) {
+            return nullptr;
+        }
+
+        threshold = numeric_limits<double>::max();
+        findNNHelper(root, queryPoint, 0);
+        return &nearestNeighbor;
     }
 
     /** Extra credit */
@@ -90,62 +91,71 @@ class KDT {
     }
 
     /** TODO */
+    //returns size
     unsigned int size() const { return isize; }
 
     /** TODO */
+    //returns height
     int height() const { return iheight; }
-    
+
   private:
     /** TODO */
+    //build function recursive helper method
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-	if(start==end){
-		return nullptr;
-	}
+        if (start == end) {
+            return nullptr;
+        }
         CompareValueAt compare(curDim);
-	sort(points.begin()+start, points.begin()+end-1, compare);
-	int median =floor((start+end)/MAGIC_NUMBER);
-	KDNode* node = new KDNode(points[median]);
-	height++;
-	if(height > iheight){
-		iheight = height;
-	}
-	node->left = buildSubtree(points, start, median, ((curDim+1)%numDim), height);
-        node->right = buildSubtree(points, median+1, end, ((curDim+1)%numDim), height);
+        sort(points.begin() + start, points.begin() + end - 1, compare);
+        int median = floor((start + end) / MAGIC_NUMBER);
+        KDNode* node = new KDNode(points[median]);
+        height++;
+        if (height > iheight) {
+            iheight = height;
+        }
+        node->left = buildSubtree(points, start, median,
+                                  ((curDim + 1) % numDim), height);
+        node->right = buildSubtree(points, median + 1, end,
+                                   ((curDim + 1) % numDim), height);
         return node;
     }
 
     /** TODO */
+    //nearest neighbor recursive helper function
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
-	 if(!node){
-		 return;
-	 }
-	 //Initiates recursion
-	 if(queryPoint.valueAt(curDim) >= node->point.valueAt(curDim)){
-		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
-		//Decides whether to check left subtree
-		if(node->left){
-			node->left->point.setDistToQuery(queryPoint);
-			if(node->left->point.distToQuery < threshold){
-				findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
-			}
-		}
-	
-	 }else{
-		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
-		//decides whether to check right subtree
-		if(node->right){
-			node->right->point.setDistToQuery(queryPoint);
-			if(node->right->point.distToQuery < threshold){
-				findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
-			}
-		}
-	 }
-	 node->point.setDistToQuery(queryPoint);
-	 if(node->point.distToQuery < threshold){
-		 nearestNeighbor = node->point;
-		 threshold = node->point.distToQuery;
-	 }
+        if (!node) {
+            return;
+        }
+        // Initiates recursion
+        if (queryPoint.valueAt(curDim) >= node->point.valueAt(curDim)) {
+            findNNHelper(node->right, queryPoint, ((curDim + 1) % numDim));
+            // Decides whether to check left subtree
+            if (node->left) {
+                node->left->point.setDistToQuery(queryPoint);
+                if (node->left->point.distToQuery < threshold) {
+                    findNNHelper(node->left, queryPoint,
+                                 ((curDim + 1) % numDim));
+                }
+            }
+
+        } else {
+            findNNHelper(node->left, queryPoint, ((curDim + 1) % numDim));
+            // decides whether to check right subtree
+            if (node->right) {
+                node->right->point.setDistToQuery(queryPoint);
+                if (node->right->point.distToQuery < threshold) {
+                    findNNHelper(node->right, queryPoint,
+                                 ((curDim + 1) % numDim));
+                }
+            }
+        }
+	//sets current point as threshold
+        node->point.setDistToQuery(queryPoint);
+        if (node->point.distToQuery < threshold) {
+            nearestNeighbor = node->point;
+            threshold = node->point.distToQuery;
+        }
     }
 
     /** Extra credit */
@@ -154,7 +164,7 @@ class KDT {
                            unsigned int curDim) {}
 
     /** TODO */
-    //Recursively deletes nodes in KDT 
+    // Recursively deletes nodes in KDT
     static void deleteAll(KDNode* n) {
         if (!n) {
             return;
@@ -162,7 +172,7 @@ class KDT {
         deleteAll(n->left);
         deleteAll(n->right);
         delete n;
-    } 
+    }
     // Add your own helper methods here
 };
 #endif  // KDT_HPP
