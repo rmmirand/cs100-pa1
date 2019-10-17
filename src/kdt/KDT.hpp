@@ -76,7 +76,7 @@ class KDT {
 		   return nullptr;
 	    } 
 	    
-            threshold = (numeric_limits<double>::max()),
+            threshold = (numeric_limits<double>::max());
             findNNHelper(root, queryPoint, 0);
 	    return &nearestNeighbor; 
     }
