@@ -76,7 +76,7 @@ class KDT {
 		   return nullptr;
 	    } 
 	    
-            threshold = numeric_limits<double>::max();
+            threshold = 100000000000000000000000000000000000.00000000000;
             findNNHelper(root, queryPoint, 0);
 	    return &nearestNeighbor; 
     }
@@ -137,7 +137,7 @@ class KDT {
 		}
 	 }
 	 node->point.setDistToQuery(queryPoint);
-	 if(node->point.distToQuery <= threshold){
+	 if(node->point.distToQuery < threshold){
 		 nearestNeighbor = node->point;
 		 threshold = node->point.distToQuery;
 	 }
