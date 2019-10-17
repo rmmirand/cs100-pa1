@@ -32,3 +32,12 @@ TEST(PointTests, TEST_DISTANCE) {
     p1.setDistToQuery(p2);
     ASSERT_DOUBLE_EQ(p1.distToQuery, 1.0);
 }
+TEST(PointTests, TEST_EQUALS2) {
+    vector<double> p1Values{3, 4, 5, 6};
+    Point p1(p1Values);
+
+    vector<double> p2Values{3, 4, 5, 6};
+    Point p2(p2Values);
+
+    ASSERT_EQ(p1, p2);
+}

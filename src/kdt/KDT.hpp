@@ -100,7 +100,7 @@ class KDT {
 		return nullptr;
 	}
         CompareValueAt compare(curDim);
-	sort(points.begin()+start, points.begin()+end-1, compare);
+	sort(points.begin()+start, points.begin()+end, compare);
 	int median =floor((start+end)/2);
 	KDNode* node = new KDNode(points[median]);
 	height++;
