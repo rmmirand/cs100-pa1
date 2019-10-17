@@ -48,7 +48,7 @@ class KDT {
     KDT()
         : root(0),
           numDim(0),
-          threshold(numeric_limits<double>::max()),
+          //threshold(numeric_limits<double>::max()),
           isize(0),
           iheight(-1)	{}
 
@@ -118,7 +118,7 @@ class KDT {
 		 return;
 	 }
 	 
-            threshold = numeric_limits<double>::max();
+        //    threshold = numeric_limits<double>::max();
 	 if(queryPoint.valueAt(curDim) >= node->point.valueAt(curDim)){
 		findNNHelper(node->right, queryPoint, ((curDim+1)%numDim));
 		if(node->left){
