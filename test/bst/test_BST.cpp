@@ -41,7 +41,7 @@ class SmallBSTFixture : public ::testing::Test {
   public:
     SmallBSTFixture() {
         // initialization code here
-        vector<int> input{3, 4, 1, 100, -33};
+        vector<int> input{3, 4, 1, 100, -33, 2, 56};
         insertIntoBST(input, bst);
     }
     // code in SetUp() will execute just before the test ensues
@@ -50,16 +50,20 @@ class SmallBSTFixture : public ::testing::Test {
 
 TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     // assert that the small BST has the correct size
-    ASSERT_EQ(bst.size(), 5);
+    ASSERT_EQ(bst.size(), 7);
 }
 
 TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     // assert failed duplicate insertion
     ASSERT_FALSE(bst.insert(3));
 }
+TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST2) {
+    // assert failed duplicate insertion
+    ASSERT_TRUE(bst.insert(57));
+}
 TEST_F(SmallBSTFixture, INORDER_TEST) {
     // test inorder function
-    vector<int> input{-33, 1, 3, 4, 100};
+    vector<int> input{-33, 1, 2, 3, 4, 56, 100};
     ASSERT_EQ(bst.inorder(), input);
 }
 TEST_F(SmallBSTFixture, FIND_TESTTWO){
@@ -68,7 +72,8 @@ TEST_F(SmallBSTFixture, FIND_TESTTWO){
 TEST_F(SmallBSTFixture, FIND_TEST) {
     ASSERT_EQ(bst.find(1).getNode()->data, 1);
 }TEST_F(SmallBSTFixture, FIND_SUCCESSOR){
-    ASSERT_EQ(bst.find(3).getNode()->successor()->data, 4); 
+    
+    ASSERT_EQ(bst.find(4).getNode()->successor()->data, 56); 
 }
 
 // TODO: add more BST tests here
