@@ -100,7 +100,7 @@ class KDT {
 		return nullptr;
 	}
         CompareValueAt compare(curDim);
-	sort(points.begin()+start, points.begin()+end-1, compare);
+	sort(points.begin()+start, points.begin()+end, compare);
 	int median =floor((start+end)/2);
 	KDNode* node = new KDNode(points[median]);
 	height++;
@@ -117,7 +117,7 @@ class KDT {
 	 if(!node){
 		 return;
 	 }
-	 if(queryPoint.features[curDim] <= node->point.valueAt(curDim)){
+	 if(queryPoint.features[curDim] < node->point.valueAt(curDim)){
 		findNNHelper(node->left, queryPoint, ((curDim+1)%numDim));
 		if(node->right){
 			node->right->point.setDistToQuery(queryPoint);
